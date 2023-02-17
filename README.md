@@ -2,9 +2,7 @@
 
 [![NPM version](https://img.shields.io/npm/v/vue-signals?color=a1b858&label=)](https://www.npmjs.com/package/vue-signals)
 
-Technically speaking, Vue.js [`ref()`'s'](https://vuejs.org/api/reactivity-core.html#ref) are already reactive signals. That's why it's easy to replicate the specific API design choices made in SolidJS.
-
-This package is a thin wrapper around Vue's `ref()` function that exposes the same API as SolidJS's [`createSignal()`](https://www.solidjs.com/docs/latest#createsignal):
+This package is a thin wrapper around Vue's [`ref()`](https://vuejs.org/api/reactivity-core.html#ref) function that exposes the same API as SolidJS's [`createSignal()`](https://www.solidjs.com/docs/latest#createsignal):
 
 ```vue
 <script lang="ts" setup>
@@ -20,6 +18,8 @@ const [count, setCount] = createSignal(0)
   </button>
 </template>
 ```
+
+Technically speaking, Vue.js [`ref()`'s](https://vuejs.org/api/reactivity-core.html#ref) are already reactive signals. That's why it's easy to replicate the specific API design choices made in SolidJS.
 
 ## FAQ
 
