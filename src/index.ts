@@ -14,9 +14,9 @@ export function createSignal<T = any>(
 ): Signal<T> {
   const r = shallowRef(value)
 
-  const get = () => r.value
+  const get: SignalGetter<T> = () => r.value
 
-  const set = (v: T | ((v: T) => T)) => {
+  const set: SignalSetter<T> = (v) => {
     r.value = typeof v === 'function' ? (v as any)(r.value) : v
 
     if (equals === false)
