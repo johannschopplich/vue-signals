@@ -1,7 +1,7 @@
 {
   "name": "vue-signals",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "packageManager": "pnpm@7.27.0",
   "description": "Solid.js-style signals for Vue.js",
   "author": "Johann Schopplich <pkg@johannschopplich.com>",
