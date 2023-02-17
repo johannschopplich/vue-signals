@@ -19,7 +19,7 @@ const [count, setCount] = createSignal(0)
 </template>
 ```
 
-Technically speaking, Vue.js [`ref()`'s](https://vuejs.org/api/reactivity-core.html#ref) are already reactive signals. That's why it's easy to replicate the specific API design choices made in SolidJS.
+Technically speaking, Vue.js [`ref()`](https://vuejs.org/api/reactivity-core.html#ref)'s are already reactive signals. That's why it's easy to replicate the specific API design choices made in SolidJS.
 
 ## FAQ
 
