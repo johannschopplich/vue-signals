@@ -21,6 +21,27 @@ const [count, setCount] = createSignal(0)
 
 Technically speaking, Vue.js [`ref()`](https://vuejs.org/api/reactivity-core.html#ref)'s are already reactive signals. That's why it's easy to replicate the specific API design choices made in SolidJS.
 
+## API
+
+### `createSignal<T>`
+
+```ts
+type SignalGetter<T> = () => T
+type SignalSetter<T> = (v: T | ((v: T) => T)) => void
+
+type Signal<T = any> = [
+  SignalGetter<T>,
+  SignalSetter<T>,
+]
+
+declare function createSignal<T = any>(
+  value: T,
+  { equals }?: {
+    equals?: boolean | undefined
+  }
+): Signal<T>
+```
+
 ## FAQ
 
 ### Why, Though?
