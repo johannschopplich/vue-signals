@@ -36,9 +36,7 @@ type Signal<T = any> = [
 
 declare function createSignal<T = any>(
   value: T,
-  { equals }?: {
-    equals?: boolean | undefined
-  }
+  { equals }?: { equals?: false | ((prev: T, next: T) => boolean) }
 ): Signal<T>
 ```
 
