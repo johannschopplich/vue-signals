@@ -2,11 +2,30 @@
 
 [![NPM version](https://img.shields.io/npm/v/vue-signals?color=a1b858&label=)](https://www.npmjs.com/package/vue-signals)
 
-This package is a thin wrapper around Vue's [`ref()`](https://vuejs.org/api/reactivity-core.html#ref) function that exposes the same API as SolidJS's [`createSignal()`](https://www.solidjs.com/docs/latest#createsignal):
+This package is a thin wrapper around Vue's [`shallowRef()`](https://vuejs.org/api/reactivity-advanced.html#shallowref) function that exposes the same API as:
+
+- Solid's [`createSignal()`](https://www.solidjs.com/docs/latest#createsignal):
+- Angular's proposed [`signal()` and `computed()`](https://github.com/angular/angular/discussions/49090):
+
+Technically speaking, Vue refs are already reactive signals. That's why it's easy to replicate the specific API design choices of other frameworks. For more details on the distinction between signals and refs, [see the Vue docs on their connection](https://vuejs.org/guide/extras/reactivity-in-depth.html#connection-to-signals).
+
+## Installation
+
+To install the package, run:
+
+```sh
+pnpm install vue-signals # or npm or yarn
+```
+
+### Usage
+
+### Solid
+
+Import the `createSignal()` function from `vue-signals/solid`:
 
 ```vue
 <script lang="ts" setup>
-import { createSignal } from 'vue-signals'
+import { createSignal } from 'vue-signals/solid'
 
 const [count, setCount] = createSignal(0)
 </script>
@@ -19,11 +38,33 @@ const [count, setCount] = createSignal(0)
 </template>
 ```
 
-Technically speaking, Vue.js [`ref()`](https://vuejs.org/api/reactivity-core.html#ref)'s are already reactive signals. That's why it's easy to replicate the specific API design choices made in SolidJS.
+### Angular
+
+Import the `signal()` and `computed()` functions from `vue-signals/angular`:
+
+```vue
+<script lang="ts" setup>
+import { computed, signal } from 'vue-signals/angular'
+
+const count = signal(0)
+const double = computed(() => count() * 2)
+</script>
+
+<template>
+  <h1>Count is: {{ count() }}</h1>
+  <h1>Double is: {{ double() }}</h1>
+  <button @click="count.update(v => v + 1)">
+    increment
+  </button>
+  <button @click="count.set(0)">
+    reset
+  </button>
+</template>
+```
 
 ## API
 
-### `createSignal<T>`
+### Solid-Style `createSignal<T>`
 
 ```ts
 type SignalGetter<T> = () => T
@@ -31,13 +72,26 @@ type SignalSetter<T> = (v: T | ((v: T) => T)) => void
 
 type Signal<T = any> = [
   SignalGetter<T>,
-  SignalSetter<T>,
+  SignalSetter<T>
 ]
 
 declare function createSignal<T = any>(
   value: T,
   { equals }?: { equals?: false | ((prev: T, next: T) => boolean) }
 ): Signal<T>
+```
+
+### Angular-Style `signal<T>`
+
+```ts
+type Signal<T = any> = () => T & {
+  set: (value: T) => void
+  update: (updater: (value: T) => T) => void
+  mutate: (mutator: (value: T) => void) => void
+}
+
+declare function signal<T = any>(initialValue: T): Signal
+declare function computed<T>(getter: (...args: any[]) => T): () => T
 ```
 
 ## FAQ
@@ -50,7 +104,7 @@ Users new to Vue.js may be confused by the `ref()` API. It's not immediately obv
 
 ## Credits
 
-- Evan You for his [Tweet](https://twitter.com/youyuxi/status/1618181618069573633).
+- Evan You for his inspirational Solid signal implementations, first appearing [in a Tweet](https://twitter.com/youyuxi/status/1618181618069573633) and later his [Angular implementation](https://twitter.com/youyuxi/status/1628214809631293440).
 
 ## License
 
