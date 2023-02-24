@@ -1,9 +1,9 @@
 {
   "name": "vue-signals",
   "type": "module",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "packageManager": "pnpm@7.27.1",
-  "description": "Solid and Angular Signals for Vue.js",
+  "description": "Solid and Angular signals for Vue.js",
   "author": "Johann Schopplich <pkg@johannschopplich.com>",
   "license": "MIT",
   "homepage": "https://github.com/johannschopplich/vue-signals#readme",
