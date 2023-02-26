@@ -31,7 +31,7 @@ const [count, setCount] = createSignal(0)
 </script>
 
 <template>
-  <h1>{{ count() }}</h1>
+  <p>Count: {{ count() }}</p>
   <button @click="setCount((v) => v + 1)">
     increment
   </button>
@@ -51,8 +51,8 @@ const double = computed(() => count() * 2)
 </script>
 
 <template>
-  <h1>Count is: {{ count() }}</h1>
-  <h1>Double is: {{ double() }}</h1>
+  <p>Count: {{ count() }}</p>
+  <p>Double: {{ double() }}</p>
   <button @click="count.update(v => v + 1)">
     increment
   </button>
