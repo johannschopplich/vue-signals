@@ -2,11 +2,13 @@ import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 
+const currentDir = new URL('.', import.meta.url).pathname
+
 export default defineConfig({
   resolve: {
     alias: {
-      '~/': `${resolve(__dirname, 'src')}/`,
-      'vue-signals': resolve(__dirname, '../src/index.ts'),
+      '~/': `${resolve(currentDir, 'src')}/`,
+      'vue-signals': resolve(currentDir, '../src/index.ts'),
     },
   },
 
