@@ -6,7 +6,7 @@ const [count, setCount] = createSignal(0)
 
 // Angular-style
 const angularCount = signal(0)
-const angularDouble = computed(() => count() * 2)
+const angularDouble = computed(() => angularCount() * 2)
 </script>
 
 <template>
