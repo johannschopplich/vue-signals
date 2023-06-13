@@ -6,6 +6,7 @@ export default defineBuildConfig({
     'src/solid',
     'src/angular',
   ],
+  externals: ['@vue/reactivity'],
   declaration: true,
   clean: true,
 })

@@ -1,4 +1,4 @@
-import { shallowRef, triggerRef } from 'vue'
+import { shallowRef, triggerRef } from '@vue/reactivity'
 
 export type SignalGetter<T> = () => T
 export type SignalSetter<T> = (v: T | ((v: T) => T)) => void

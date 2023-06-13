@@ -1,4 +1,4 @@
-import { computed as _computed, shallowRef, triggerRef } from 'vue'
+import { computed as _computed, shallowRef, triggerRef } from '@vue/reactivity'
 
 export interface Signal<T = any> {
   (): T
